@@ -1,4 +1,3 @@
-from typing import Dict
 from szurubooru import config, errors, rest
 from szurubooru.func import auth, mailer, users, versions
 from hashlib import md5
@@ -13,7 +12,6 @@ MAIL_BODY = (
 
 @rest.routes.get('/password-reset/(?P<user_name>[^/]+)/?')
 def start_password_reset(
-        ctx: rest.Context, params: Dict[str, str]) -> rest.Response:
     user_name = params['user_name']
     user = users.get_user_by_name_or_email(user_name)
     if not user.email:
