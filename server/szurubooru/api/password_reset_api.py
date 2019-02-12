@@ -22,17 +22,13 @@ def start_password_reset(
                 user_name))
     token = auth.generate_authentication_token(user)
 
-    if 'HTTP_ORIGIN' in ctx.env:
-        url = ctx.env['HTTP_ORIGIN'].rstrip('/')
-    else:
-        url = ''
-    url += '/password-reset/%s:%s' % (user.name, token)
+    url = '/password-reset/%s:%s' % (user.name, token)
 
     mailer.send_mail(
-        'noreply@%s' % config.config['name'],
+        'noreply@%s' % config.config['server_address'],
         user.email,
         MAIL_SUBJECT.format(name=config.config['name']),
-        MAIL_BODY.format(name=config.config['name'], url=url))
+        MAIL_BODY.format(name=config.config['server_address'], url=url))
 
     return {}
 

@@ -2,7 +2,9 @@
 # and override only what you need.
 
 # shown in the website title and on the front page
-name: szurubooru
+name: 'szurubooru'
+# Server address that the booru will run on (used by api for password recovery emails)
+server_address: #example.com
 # user agent name used to download files from the web on behalf of the api users
 user_agent:
 # used to salt the users' password hashes
